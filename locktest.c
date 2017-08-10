@@ -142,24 +142,22 @@ const char *locktype_string(int locktype) {
 
 void run_test(int locktype) {
   fprintf(stderr, "\n");
-  fprintf(stderr, "================ <%s>\n", locktype_string(locktype));
+  fprintf(stderr, "============== %s ==============\n", locktype_string(locktype));
 
-  int num_procs = 3;
+  int num_procs = 5;
   for (int i = 0; i < num_procs; i++) {
     start_proc(locktype, i);
-    usleep(100000);
   }
 
   for (int i = 0; i < num_procs; i++) {
     wait(NULL);
   }
   unlink(LOCK_NAME);
-
-  fprintf(stderr, "================ </%s>\n", locktype_string(locktype));
+  fprintf(stderr, "\n");
 }
 
 int main(int argc, char **argv) {
   run_test(LOCKTYPE_FCNTL);
-  run_test(LOCKTYPE_FLOCK_SH);
+  // run_test(LOCKTYPE_FLOCK_SH);
   run_test(LOCKTYPE_FLOCK_EX);
 }
