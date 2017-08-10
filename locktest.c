@@ -155,8 +155,6 @@ void run_test(int locktype) {
   }
   unlink(LOCK_NAME);
 
-  sleep(1);
-
   fprintf(stderr, "================ </%s>\n", locktype_string(locktype));
 }
 
