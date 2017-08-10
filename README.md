@@ -4,6 +4,15 @@
 The smallest possible test case to confirm that fcntl locks are currently
 broke in Windows Subsystem for Linux.
 
+## Running the test
+
+```
+make
+lsb_release -d && uname -a && ./locktest
+```
+
+And send a screenshot to @fasterthanlime [in this thread](https://twitter.com/fasterthanlime/status/895581000931172353) !
+
 ## Example good output
 
 
