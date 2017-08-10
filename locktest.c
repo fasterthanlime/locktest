@@ -104,23 +104,23 @@ void start_proc(int locktype, int i) {
 
     tup_lock_t lock;
     if (tup_lock_open(LOCK_NAME, &lock) < 0) {
-      fprintf(stderr, "[%d] failed to open lock\n", i);
+      fprintf(stderr, "%d: failed to open lock\n", i);
       exit(1);
     }
 
     if (tup_flock(lock, locktype) < 0) {
-      fprintf(stderr, "[%d] failed to flock\n", i);
+      fprintf(stderr, "%d: failed to flock\n", i);
       exit(1);
     }
 
-    fprintf(stderr, "[%d] locked!\n", i);
+    fprintf(stderr, "--> %d\n", i);
     sleep(1);
 
     if (tup_unflock(lock, locktype) < 0) {
-      fprintf(stderr, "[%d] failed to unflock\n", i);
+      fprintf(stderr, "%d: failed to unflock\n", i);
       exit(1);
     }
-    fprintf(stderr, "[%d] unlocked!\n", i);
+    fprintf(stderr, "%d -->\n", i);
     exit(0);
   } else {
     return;
